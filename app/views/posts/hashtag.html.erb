@@ -1,0 +1,5 @@
+<% provide(:title, @tag.hashname) %>
+<% @post.each do |posthashtag| %>
+  <%= posthashtag.user.name %>
+  <%= posthashtag.content %>
+<% end %>

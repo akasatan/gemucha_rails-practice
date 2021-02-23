@@ -1,0 +1,9 @@
+キーワード検索<br />
+ハッシュタグ検索<br />
+よく検索されているハッシュタグ５つ<br />
+ここに並べる<br />
+
+<% @posts.each do |posto| %>
+  <%= attachment_image_tag user, :profile_image %>
+  <%= posto.content %>
+<% end %>
