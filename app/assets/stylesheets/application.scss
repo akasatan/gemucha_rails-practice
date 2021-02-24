@@ -13,3 +13,17 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap";
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+ 
+.samune{
+    width: 80%;
+}
+
+.toukou{
+    width: 500px;
+}
+.toukou-item{
+    list-style: none;
+}

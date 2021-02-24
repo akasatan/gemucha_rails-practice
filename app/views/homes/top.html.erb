@@ -1,5 +1,18 @@
-    <h1>Top画面だよ～</h1>
 
-  <%= link_to "ログイン", new_user_session_path %>
-  <%= link_to "新規登録", new_user_registration_path %>
-    <%= yield %>
+<div class="container">
+    <div class="row">
+      <h1 class="mx-auto p-2">げむチャを始めてみよう！</h1>
+    </div>
+    <div class="row">
+      <div class="col">
+        <%= link_to "ログイン", new_user_session_path, class: "fas fa-sign-in-alt btn btn-outline-primary btn-block" %>
+      </div>
+      <div class="col">
+        <%= link_to "新規登録", new_user_registration_path, class: "far fa-address-card btn btn-outline-secondary btn-block" %>
+      </div>
+      <div class="col">
+        <%= link_to "みてみる", postos_path, class: "fas fa-bolt btn btn-outline-success btn-block" %>
+      </div>
+    </div>
+    <%= image_tag 'samune.jpg', class: "img-fluid", alt: "ホーム画像" %>
+</div>

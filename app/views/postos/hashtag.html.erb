@@ -1,0 +1,5 @@
+ #<%= @tag.hashname %>の検索結果
+ <% @posto.each do |posto| %>
+   <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg", size:'40x40' %>
+   <%= render_with_hashtags(posto.content) %>
+ <% end %>

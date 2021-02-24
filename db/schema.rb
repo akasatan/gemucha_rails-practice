@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_23_142743) do
+ActiveRecord::Schema.define(version: 2021_02_24_033135) do
 
-  create_table "hashtag_posts", force: :cascade do |t|
-    t.integer "post_id"
+  create_table "hashtag_postos", force: :cascade do |t|
+    t.integer "posto_id"
     t.integer "hashtag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["hashtag_id"], name: "index_hashtag_posts_on_hashtag_id"
-    t.index ["post_id"], name: "index_hashtag_posts_on_post_id"
+    t.index ["hashtag_id"], name: "index_hashtag_postos_on_hashtag_id"
+    t.index ["posto_id"], name: "index_hashtag_postos_on_posto_id"
   end
 
   create_table "hashtags", force: :cascade do |t|
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2021_02_23_142743) do
     t.index ["hashname"], name: "index_hashtags_on_hashname", unique: true
   end
 
-  create_table "posts", force: :cascade do |t|
+  create_table "postos", force: :cascade do |t|
     t.text "content"
     t.integer "user_id"
     t.datetime "created_at", null: false

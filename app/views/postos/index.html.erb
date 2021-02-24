@@ -1,0 +1,28 @@
+<%= render 'postos/posto', posto: @posto %>
+<div class="container">
+  <div class="row">
+    キーワード検索
+  </div>
+  <div class="row">
+    ハッシュタグ検索
+  </div>
+  <div class="row">
+    よく検索されているハッシュタグ５つここに並べる
+  </div>
+</div>
+    <% @postos.each do |posto| %>
+      <div class="container-sm rounded border border-info toukou mx-auto my-3">
+        <ul class="toukou-item m-3">
+          <li>
+            <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg", size:'40x40' %>
+            <%= render_with_hashtags(posto.content) %>
+          </li>
+          <li>
+              <% if posto.user_id == current_user.id %>
+                <%= link_to "削除", postos_path(posto), method: :delete %>
+              <% end %>
+          </li>
+        </ul>
+      </div>
+    <% end %>
+</div>

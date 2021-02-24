@@ -1,0 +1,10 @@
+<div class="container">
+  <%= link_to "←back", postos_path, class: "btn btn-outline-secondary m-3" %>
+  <%= form_with model: @posto, local: true do |f| %>
+    <%= f.label :content, "投稿内容" %>
+    <div class="form-floating">
+    <%= f.text_field :content, class: "form-control m-3",style: "height: 100px", placeholder: "ここに内容を書いてね" %>
+    </div>
+    <%= f.submit '投稿', class: "btn btn-outline-primary m-3" %>
+  <% end %>
+</div>
