@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   resources :users
   post 'follow/:id' => 'relationships#follow', as: 'follow' 
   post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow' 
+  get 'chat/:id' => 'chats#show', as: 'chat'
+  resources :chats
 end

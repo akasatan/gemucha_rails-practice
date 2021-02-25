@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_many :followings, through: :relationships, source: :follower
   has_many :passive_relationships, class_name: 'Relationship', foreign_key: 'follower_id', dependent: :destroy
   has_many :followers, through: :passive_relationships, source: :user
+  has_many :user_room, dependent: :destroy
+  has_many :chat, dependent: :destroy
   
   def follow(other_user)
     return if self == other_user
