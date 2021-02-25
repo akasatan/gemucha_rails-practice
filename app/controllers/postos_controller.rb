@@ -1,4 +1,6 @@
 class PostosController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :show]
+
   def hashtag
     @user = current_user
     @tag = Hashtag.find_by(hashname: params[:name])
@@ -8,11 +10,15 @@ class PostosController < ApplicationController
   
   def index
     @postos = Posto.all
-    @users = User.all
+    @tags = Hashtag.all
   end
   
   def new
     @posto = Posto.new
+  end
+  
+  def show
+    @posto = Posto.find(params[:id])
   end
   
   def create
@@ -21,15 +27,16 @@ class PostosController < ApplicationController
     if @posto.save
       redirect_to postos_path
     else
-      render postos_path #変える
+      render index
     end
   end
   
   def destroy
     @posto = Posto.find(params[:id])
-    @posto.user_id = current_user.id
-    @posto.destroy
-    redirect_to postos_path
+    if @posto.destroy
+       redirect_to postos_path
+    else render postos_path
+    end
   end
   
   private

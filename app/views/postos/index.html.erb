@@ -7,22 +7,29 @@
     ハッシュタグ検索
   </div>
   <div class="row">
-    よく検索されているハッシュタグ５つここに並べる
+    <div class="col">
+      <p>使われているタグ一覧</p>
+      <% @tags.each do |tag| %>
+        <%= link_to "/posto/hashtag/#{tag.hashname}" do %>
+          #<%= tag.hashname %>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
-    <% @postos.each do |posto| %>
-      <div class="container-sm rounded border border-info toukou mx-auto my-3">
-        <ul class="toukou-item m-3">
-          <li>
-            <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg", size:'40x40' %>
-            <%= render_with_hashtags(posto.content) %>
-          </li>
-          <li>
-              <% if posto.user_id == current_user.id %>
-                <%= link_to "削除", postos_path(posto), method: :delete %>
-              <% end %>
-          </li>
-        </ul>
-      </div>
-    <% end %>
+<div class="container">
+  <% @postos.each do |posto| %>
+    <div class="row rounded border border-info toukou mx-auto my-3">
+      <%= link_to user_path(posto.user_id) do %>
+        <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg", size:'40x40' %>
+      <% end %>
+      <%= link_to posto_path(posto) do %>
+        <%= render_with_hashtags(posto.content) %>
+      <% end %>
+      <% if posto.user_id == current_user.id %>
+        <%= link_to "削除", posto_path(posto), method: :delete, data: {confirm: "本当に消しますか？"} %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
 </div>

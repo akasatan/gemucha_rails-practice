@@ -1,0 +1,29 @@
+      <h2>User info</h2>
+      <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg", size: '100x100' %>
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>name</th>
+            <th><%= @user.name %></th>
+          </tr>
+          <tr>
+            <th>introduction</th>
+            <th><%= @user.introduction %></th>
+          </tr>
+          <tr>
+            <th>follow数</th>
+            <th>あとで実装する！！</th>
+            <!--<th>%= @user.followings.count %>人</th>-->
+          </tr>
+          <tr>
+            <th>follower数</th>
+            <!--<th>%= @user.followers.count %>人</th>-->
+          </tr>
+          <% @postos.each do |posto| %>
+          <tr>
+            <th>投稿一覧</th>
+            <th><%= link_to posto.content, posto_path(posto.id) %></th>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>

@@ -4,15 +4,24 @@
       <h1 class="mx-auto p-2">げむチャを始めてみよう！</h1>
     </div>
     <div class="row">
-      <div class="col">
-        <%= link_to "ログイン", new_user_session_path, class: "fas fa-sign-in-alt btn btn-outline-primary btn-block" %>
-      </div>
-      <div class="col">
-        <%= link_to "新規登録", new_user_registration_path, class: "far fa-address-card btn btn-outline-secondary btn-block" %>
-      </div>
-      <div class="col">
-        <%= link_to "みてみる", postos_path, class: "fas fa-bolt btn btn-outline-success btn-block" %>
-      </div>
+      <% if user_signed_in? %>
+        <div class="col">
+          <%= link_to "みてみる", postos_path, class: "fas fa-bolt btn btn-outline-success btn-block" %>
+        </div>
+        <div class="col">
+          <%= link_to "ログアウト", destroy_user_session_path,method: :delete, class: "fas fa-sign-out-alt btn btn-outline-info btn-block" %>
+        </div>
+      <% else %>
+        <div class="col">
+          <%= link_to "みてみる", postos_path, class: "fas fa-bolt btn btn-outline-success btn-block" %>
+        </div>
+        <div class="col">
+          <%= link_to "ログイン", new_user_session_path, class: "fas fa-sign-in-alt btn btn-outline-primary btn-block" %>
+        </div>
+        <div class="col">
+          <%= link_to "新規登録", new_user_registration_path, class: "far fa-address-card btn btn-outline-secondary btn-block" %>
+        </div>
+      <% end %>
     </div>
     <%= image_tag 'samune.jpg', class: "img-fluid", alt: "ホーム画像" %>
 </div>
