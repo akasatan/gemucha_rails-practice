@@ -9,10 +9,11 @@ class PostosController < ApplicationController
   end
   
   def index
-    @postos = Posto.all
+    @postos = Posto.page(params[:page]).reverse_order
     @tags = Hashtag.all
     @search = Posto.ransack(params[:q])
     @results = @search.result
+    @check = params[:q]
   end
   
   def new

@@ -6,6 +6,7 @@
 <table>
     <thead>
         <tr>
+            <td>画像</td>
             <td>ユーザ名</td>
             <td>チャット</td>
         </tr>
@@ -13,6 +14,7 @@
     <tbody>
         <% @chats.each do |chat| %>
             <tr>
+                <td><%= attachment_image_tag chat.user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg", size:'40x40' %></td>
                 <td><%= chat.user.name %></td>
                 <td><%= chat.message %></td>
             </tr>

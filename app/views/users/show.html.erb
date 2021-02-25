@@ -1,7 +1,12 @@
-  <h2>User info</h2>
-  <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg", size: '100x100' %>
+<div class-"container">
+  <h2 class="row toukou mx-auto my-3">ぷろふぃーる</h2>
+  <div class="profile row rounded border border-info toukou mx-auto my-3">
   <table class="table">
     <tbody>
+      <tr>
+        <th><%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg", size: '100x100', class: "img" %></th>
+        <th></th>
+      </tr>
       <tr>
         <th>name</th>
         <th><%= @user.name %></th>
@@ -17,32 +22,34 @@
       </tr>
       <tr>
         <th>follower数</th>
+        <th>aa</th>
         <!--<th>%= @user.followers.count %>人</th>-->
-        </tr>
+      </tr>
       <tr>
         <th>
-          <% if @user == current_user %>
-            <%= link_to "プロフィール編集", edit_user_path(current_user), class: "btn btn-success" %>
-          <% end %>
-        </th>
-      </tr>
-      <th>
+        <% if @user == current_user %>
+          <%= link_to "プロフィール編集", edit_user_path(current_user), class: "btn btn-success" %>
+        <% end %>
         <% if current_user != @user %>
           <%= link_to 'chatを始める', chat_path(@user.id)%>
         <% end %>
-      </th>
+        </th>
+        <th></th>
+      </tr>
     </tbody>
   </table>
-  <% @postos.each do |posto| %>
-    <tr>
-      <th>投稿一覧</th>
-      <div class="row rounded border border-info toukou mx-auto my-3">
-        <th>
-          <%= link_to user_path(posto.user_id) do %>
-            <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg", size:'40x40' %>
-          <% end %>
-        </th>
-        <th><%= link_to posto.content, posto_path(posto.id) %></th>
-      </div>
-    </tr>
+  </div>
+</div>
+  <tr>
+    <th>投稿一覧</th>
+    <% @postos.each do |posto| %>
+    <div class="row rounded border border-info toukou mx-auto my-3">
+      <th>
+        <%= link_to user_path(posto.user_id) do %>
+          <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg", size:'40x40' %>
+        <% end %>
+      </th>
+      <th><%= link_to posto.content, posto_path(posto.id) %></th>
+    </div>
+  </tr>
   <% end %>

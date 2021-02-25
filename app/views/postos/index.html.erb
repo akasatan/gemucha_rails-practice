@@ -1,31 +1,40 @@
 <%= render 'postos/posto', posto: @posto %>
 <div class="container">
-  <div class="row">
-    <table>
-      <td>
+  <table class="table table-borderless">
+    <tbody>
+      <tr>
         <%= search_form_for @search do |f| %>
-          <th><%= f.search_field :content_cont,required: true, class: "form-control", placeholder: "投稿の検索ができるよ" %></th>
-          <th><%= f.submit '検索', class: "btn btn-outline-primary"%></th>
+          <td><%= f.search_field :content_cont,required: true, class: "form-control col-6 offset-md-5", placeholder: "投稿の検索ができるよ" %></td>
+          <td><%= f.submit '検索', class: "btn btn-outline-primary col-6"%></td>
+          <td></td>
+          <td></td>
+          <td></td>
         <% end %>
-      </td>
-    </table>
+      </tr>
+    </tdoby>
+  </table>
+  <div class="d-grid gap-2 col-12 mx-auto">
+    <div class="row justify-content-around mx-auto">
+      <p>検索結果</p>
+    </div>
   </div>
-  <div class="row">
-  <p>検索結果</p>
-  </div>
-  <div class="row">
+  <% if @check.present? %>
     <% @results.each do |kekka| %>
+    <div class="row mx-auto toukou">
       <%= link_to user_path(kekka.user_id) do %>
         <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg", size:'40x40' %>
       <% end %>
       <%= link_to posto_path(kekka.id) do %>
         <%= render_with_hashtags(kekka.content) %>
       <% end %>
+    </div>
     <% end %>
-  </div>
-  <div class="row">
+  <% end %>
+  <div class="row justify-content-around mx-auto">
     <p>使われているタグ一覧</p>
-    <div class="col">
+  </div>
+  <div class="row mx-auto toukou">
+    <div class="col mx-auto">
       <% @tags.each do |tag| %>
         <%= link_to "/posto/hashtag/#{tag.hashname}" do %>
           #<%= tag.hashname %>
@@ -33,13 +42,12 @@
       <% end %>
     </div>
   </div>
-</div>
-<div class="container">
   <% @postos.each do |posto| %>
     <div class="row rounded border border-info toukou mx-auto my-3">
       <%= link_to user_path(posto.user_id) do %>
-        <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg", size:'40x40' %>
+        <%= attachment_image_tag posto.user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg", size:'40x40' %>
       <% end %>
+      <%= posto.user.name %>
       <%= link_to posto_path(posto) do %>
         <%= render_with_hashtags(posto.content) %>
       <% end %>
@@ -48,5 +56,5 @@
       <% end %>
     </div>
   <% end %>
-</div>
+  <%= paginate @postos %>
 </div>

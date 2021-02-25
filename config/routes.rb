@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   post 'follow/:id' => 'relationships#follow', as: 'follow' 
   post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow' 
   get 'chat/:id' => 'chats#show', as: 'chat'
-  resources :chats
+  resources :chats, only: [:create]
 end

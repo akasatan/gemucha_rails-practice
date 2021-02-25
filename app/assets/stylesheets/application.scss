@@ -22,8 +22,18 @@
 }
 
 .toukou{
-    width: 500px;
+    width: 800px;
+    text-align: center;
 }
 .toukou-item, .nav-item{
     list-style: none;
+}
+.pagination {
+  justify-content: center;
+}
+.profile{
+    background-color: #eaf4fc;
+}
+.img{
+    border-radius: 50%;
 }
