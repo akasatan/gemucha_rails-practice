@@ -1,14 +1,31 @@
 <%= render 'postos/posto', posto: @posto %>
 <div class="container">
   <div class="row">
-    キーワード検索
+    <table>
+      <td>
+        <%= search_form_for @search do |f| %>
+          <th><%= f.search_field :content_cont,required: true, class: "form-control", placeholder: "投稿の検索ができるよ" %></th>
+          <th><%= f.submit '検索', class: "btn btn-outline-primary"%></th>
+        <% end %>
+      </td>
+    </table>
   </div>
   <div class="row">
-    ハッシュタグ検索
+  <p>検索結果</p>
   </div>
   <div class="row">
+    <% @results.each do |kekka| %>
+      <%= link_to user_path(kekka.user_id) do %>
+        <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg", size:'40x40' %>
+      <% end %>
+      <%= link_to posto_path(kekka.id) do %>
+        <%= render_with_hashtags(kekka.content) %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="row">
+    <p>使われているタグ一覧</p>
     <div class="col">
-      <p>使われているタグ一覧</p>
       <% @tags.each do |tag| %>
         <%= link_to "/posto/hashtag/#{tag.hashname}" do %>
           #<%= tag.hashname %>

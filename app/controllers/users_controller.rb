@@ -16,10 +16,13 @@ class UsersController < ApplicationController
   
   def update
     @user = current_user
-    if @user.update
-      redirect_to postos_path
-    else render edit
+    if @user.update(user_params)
+      redirect_to postos_path, notice: "変更しました"
+    else render :edit
     end
   end
     
+  def user_params
+    params.require(:user).permit(:name, :introduction, :profile_image)
+  end
 end

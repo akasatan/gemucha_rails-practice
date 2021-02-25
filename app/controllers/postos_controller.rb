@@ -11,6 +11,8 @@ class PostosController < ApplicationController
   def index
     @postos = Posto.all
     @tags = Hashtag.all
+    @search = Posto.ransack(params[:q])
+    @results = @search.result
   end
   
   def new
