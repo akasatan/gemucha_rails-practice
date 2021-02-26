@@ -1,55 +1,76 @@
+<%= render 'postos/posto' %>
 <div class-"container">
-  <h2 class="row toukou mx-auto my-3">ぷろふぃーる</h2>
-  <div class="profile row rounded border border-info toukou mx-auto my-3">
-  <table class="table">
-    <tbody>
-      <tr>
-        <th><%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg", size: '100x100', class: "img" %></th>
-        <th></th>
-      </tr>
-      <tr>
-        <th>name</th>
-        <th><%= @user.name %></th>
-      </tr>
-      <tr>
-        <th>introduction</th>
-        <th><%= @user.introduction %></th>
-      </tr>
-      <tr>
-        <th>follow数</th>
-        <th>あとで実装する！！</th>
-        <!--<th>%= @user.followings.count %>人</th>-->
-      </tr>
-      <tr>
-        <th>follower数</th>
-        <th>aa</th>
-        <!--<th>%= @user.followers.count %>人</th>-->
-      </tr>
-      <tr>
-        <th>
-        <% if @user == current_user %>
-          <%= link_to "プロフィール編集", edit_user_path(current_user), class: "btn btn-success" %>
-        <% end %>
-        <% if current_user != @user %>
-          <%= link_to 'chatを始める', chat_path(@user.id)%>
-        <% end %>
-        </th>
-        <th></th>
-      </tr>
-    </tbody>
-  </table>
-  </div>
-</div>
-  <tr>
-    <th>投稿一覧</th>
-    <% @postos.each do |posto| %>
-    <div class="row rounded border border-info toukou mx-auto my-3">
-      <th>
-        <%= link_to user_path(posto.user_id) do %>
-          <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg", size:'40x40' %>
-        <% end %>
-      </th>
-      <th><%= link_to posto.content, posto_path(posto.id) %></th>
+  <div class="row">
+    <div class="col-5 mx-auto heading-img">
+      ぷろふぃーる
     </div>
-  </tr>
-  <% end %>
+  </div>
+  <div class="profile row rounded border border-info toukou mx-auto my-3">
+    <table class="table">
+      <tbody>
+        <tr>
+          <th><%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg", size: '100x100', class: "img" %></th>
+          <th></th>
+        </tr>
+        <tr>
+          <th>name</th>
+          <th><%= @user.name %></th>
+        </tr>
+        <tr>
+          <th>introduction</th>
+          <th><%= @user.introduction %></th>
+        </tr>
+        <tr>
+          <th>follow数</th>
+
+          <th>あとで実装する！！</th>
+          <!--<th>%= @user.followings.count %>人</th>-->
+        </tr>
+        <tr>
+          <th>follower数</th>
+          <th>aa</th>
+          <!--<th>%= @user.followers.count %>人</th>-->
+        </tr>
+        <tr>
+          <th>
+            <% if @user == current_user %>
+              <%= link_to "プロフィール編集", edit_user_path(current_user), class: "btn btn-success" %>
+            <% end %>
+            <% if current_user != @user %>
+              <%= link_to 'chatを始める', chat_path(@user.id), class: "btn btn-info"%>
+            <% end %>
+          </th>
+          <th></th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-5 mx-auto heading-img">投稿一覧</div>
+    
+    <% @postos.each do |posto| %>
+    <div class="container mx-auto rounded-5 border border-info m-3 post profile-toukou">
+      <div class="row">
+        <div class="col-1 m-3">
+          <div class="mx-2">
+            <%= posto.user.name %>
+          </div>
+          <%= link_to user_path(posto.user_id) do %>
+            <%= attachment_image_tag posto.user, :profile_image, :fill, 80, 80, fallback: "no_image.jpg", size:'80x80', class: "img" %>
+          <% end %>
+        </div>
+        <div class="col my-4 mx-4 post-text">
+          <%= link_to posto_path(posto) do %>
+            <%= render_with_hashtags(posto.content) %>
+          <% end %>
+        </div>
+        <div class="col-2 align-self-end my-4">
+          <% if posto.user_id == current_user.id %>
+            <%= link_to "削除", posto_path(posto), method: :delete, data: {confirm: "本当に消しますか？"}, class: "btn btn-danger" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  
+  </div>
+  </div>

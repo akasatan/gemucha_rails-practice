@@ -1,13 +1,9 @@
 <div class="container">
-  <div class="d-grid gap-2 col-12 mx-auto">
-    <div class="row justify-content-around mx-auto">
-      <div class="col-4 offset-md-2">
-        <%= link_to "back", 'javascript:history.back()', class: "fas fa-chevron-left btn btn-outline-secondary my-3 btn-lg" %>
-      </div>
-      <div class="col-4">
-        <%= link_to "投稿する", new_posto_path, class: "far fa-paper-plane btn btn-outline-info my-3 btn-lg" %>
-      </div>
-    </div>  
+    <div class="row mx-auto">
+        <%= link_to "back", 'javascript:history.back()', class: "fas fa-chevron-left btn btn-outline-secondary my-3 btn-lg col-3" %>
+        <div class="col"></div>
+        <%= link_to "投稿する", new_posto_path, class: "far fa-paper-plane btn btn-outline-info my-3 btn-lg col-3" %>
+
   </div>
 </div>
 

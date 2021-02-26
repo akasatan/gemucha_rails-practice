@@ -16,14 +16,33 @@
 @import "bootstrap";
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
- 
+
+.nav-color{
+    background-color: #a0d8ef;
+}
+.nav-color a{
+    text-decoration: none;
+    color: gray;
+}
 .samune{
     width: 80%;
 }
 
 .toukou{
-    width: 800px;
+    width: 70%;
     text-align: center;
+    margin: 1em auto;  
+    padding: 1em;
+    color: #666666;
+    background-color: #f7f7f7;
+    border: 2px solid #ccc;
+    border-radius: 25px;
+}
+.post{
+    width: 70%;
+    color: #666666;
+    background-color: #f7f7f7;
+    border-radius: 30px;
 }
 .toukou-item, .nav-item{
     list-style: none;
@@ -35,5 +54,30 @@
     background-color: #eaf4fc;
 }
 .img{
-    border-radius: 50%;
+    border-radius: 30%;
+}
+.heading-img{
+    text-align: center;
+    vertical-align: middle;
+    padding: 0.2em 0.5em;
+    margin: 2em 0;
+    background: #d6ebff;
+    box-shadow: 0px 0px 0px 10px #d6ebff;
+    border: dashed 2px white;
+}
+.post-text{
+    font-size: 1.2em;
+}
+a:not([href*="hashtag"],[class*="btn-outline"]){
+    text-decoration: none;
+    color: gray;
+}
+a:hover:not([href*="hashtag"],[class*="btn-outline"]){
+    color: #0d0015;
+}
+a:hover[href*="hashtag"]{
+    text-decoration: none;
+}
+.btn:not([class*="btn-outline"]){
+    color: white !important;
 }

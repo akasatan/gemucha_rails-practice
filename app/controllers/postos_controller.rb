@@ -1,5 +1,6 @@
 class PostosController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :show]
+  before_action :authenticate_user!, except: [:hashtag, :index]
+
 
   def hashtag
     @user = current_user

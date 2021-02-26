@@ -1,5 +1,26 @@
- #<%= @tag.hashname %>の検索結果
- <% @posto.each do |posto| %>
-   <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg", size:'40x40' %>
-   <%= render_with_hashtags(posto.content) %>
- <% end %>
+<%= render 'postos/posto' %>
+ <div class="container">
+   <div class="row">
+    <div class="col-5 mx-auto heading-img">
+      #<%= @tag.hashname %>　のいちらん
+    </div>
+   </div>
+   <% @posto.each do |posto| %>
+    <div class="container mx-auto rounded-5 border border-info post m-3">
+      <div class="row">
+        <div class="col-1 m-3">
+          <div class="mx-2"><%= posto.user.name %></div>
+          <%= link_to user_path(posto.user_id) do %>
+            <%= attachment_image_tag posto.user, :profile_image, :fill, 80, 80, fallback: "no_image.jpg", size:'80x80', class: "img" %>
+          <% end %>
+        </div>
+        <div class="col my-4 mx-4 post-text">
+          <%= link_to posto_path(posto) do %>
+            <%= render_with_hashtags(posto.content) %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+ </div>
+  <%= paginate @posto %>
