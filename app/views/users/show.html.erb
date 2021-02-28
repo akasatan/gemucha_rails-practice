@@ -41,6 +41,7 @@
             <% if current_user != @user %>
               <%= link_to 'chatを始める', chat_path(@user.id), class: "btn btn-info"%>
             <% end %>
+            <%= render 'relationships/follow_button', user: @user %>
           </th>
           <th></th>
         </tr>

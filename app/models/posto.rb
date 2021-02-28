@@ -1,7 +1,6 @@
 class Posto < ApplicationRecord
   has_many :hashtag_postos, dependent: :destroy
   has_many :hashtags, through: :hashtag_postos
-  has_many :relationships
   belongs_to :user
   
   after_create do
