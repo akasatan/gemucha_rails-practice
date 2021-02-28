@@ -5,25 +5,26 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   has_many :postos, dependent: :destroy
-  has_many :relationships, dependent: :destroy
-  has_many :followings, through: :relationships, source: :follower
-  has_many :passive_relationships, class_name: 'Relationship', foreign_key: 'follower_id', dependent: :destroy
-  has_many :followers, through: :passive_relationships, source: :user
   has_many :user_room, dependent: :destroy
   has_many :chat, dependent: :destroy
+  has_many :relationships, dependent: :destroy
+  has_many :followings, through: :relationships, source: :follow
+  has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'follow_id', dependent: :destroy
+  has_many :followers, through: :reverse_of_relationships, source: :user
   
   def follow(other_user)
-    return if self == other_user
-
-    relationships.find_or_create_by!(follower: other_user)
+    unless self == other_user
+      self.relationships.create(follow_id: other_user.id)
+    end
   end
 
-  def following?(user)
-    followings.include?(user)
+  def unfollow(other_user)
+    relationship = self.relationships.find_by(follow_id: other_user.id)
+    relationship.destroy if relationship
   end
 
-  def unfollow(relathinoship_id)
-    relationships.find(relathinoship_id).destroy!
+  def following?(other_user)
+    self.followings.include?(other_user)
   end
   
   attachment :profile_image
